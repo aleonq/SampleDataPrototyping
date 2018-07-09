@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SampleEnabledRecyclerView">
+        <!--List Item-->
+        <attr name="listitem" format="reference" />
+        <attr name="list_size" format="string" />
+
+        <!--Text View 1-->
+        <attr name="listdata_text1" format="reference" />
+        <attr name="listitem_text1" format="reference" />
+        <!--Text View 2-->
+        <attr name="listdata_text2" format="reference" />
+        <attr name="listitem_text2" format="reference" />
+        <!--Text View 3-->
+        <attr name="listdata_text3" format="reference" />
+        <attr name="listitem_text3" format="reference" />
+        <!--Text View 4-->
+        <attr name="listdata_text4" format="reference" />
+        <attr name="listitem_text4" format="reference" />
+        <!--Text View 5-->
+        <attr name="listdata_text5" format="reference" />
+        <attr name="listitem_text5" format="reference" />
+        <!--Image View 1-->
+        <attr name="listitem_image1" format="reference" />
+        <attr name="listdata_image1" format="reference" />
+        <!--Image View 2-->
+        <attr name="listitem_image2" format="reference" />
+        <attr name="listdata_image2" format="reference" />
+        <!--Image View 3-->
+        <attr name="listitem_image3" format="reference" />
+        <attr name="listdata_image3" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SampleEnabledRecyclerView_old">
+        <attr name="item_name_old" format="string" />
+        <attr name="listitem_old" format="reference" />
+        <attr name="listdata_text1_old" format="reference" />
+        <attr name="listitem_text_description_old" format="reference" />
+        <attr name="listitem_image_icon_old" format="reference" />
+        <attr name="listitem_image_icon_array_old" format="reference" />
+    </declare-styleable>
+</resources>

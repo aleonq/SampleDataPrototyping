@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ArchNavigation</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_landing">LandingActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="lorem">AppbarLayout flags SCROLL_FLAG_ENTER_ALWAYS: When entering (scrolling on screen) the view will scroll on any downwards scroll event, regardless of whether the scrolling view is also scrolling.  SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED: An additional flag for enterAlways which modifies the returning view to only initially scroll back to its collapsed height.  SCROLL_FLAG_EXIT_UNTIL_COLLAPSED: When exiting (scrolling off screen) the view will be scrolled until it is collapsed.  SCROLL_FLAG_SCROLL: The view will be scroll in direct relation to scroll events. SCROLL_FLAG_SNAP: Upon a scroll ending, if the view is only partially visible then it will be snapped and scrolled to its closest edge.The AppBarLayout in this case is the blue view, placed under the collapsing image, it contains a Toolbar, a LinearLayout with title and subtitle and a TabLayout with some tabs.We can manage the behavior of direct childs in an AppbarLayout with the parameter: layout_scrollFlags. The value: scroll in this case its present in almost all views, if it wasnt specified in any child then the childs of the AppbarLayout will remain static allowing the scrollable content slide behind it.With the value: snap, we avoid fall into mid-animation-states, this means that the animations will always hide or expand all the height of its view.The LinearLayout which contains the title and subtitle will be shown always that the user scrolls up, (enterAlways value), and the TabLayout will be always visible because we dont have any flag on it.As you can see the real power of an AppbarLayout is caused by the proper management of the different scroll flags in their views.</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

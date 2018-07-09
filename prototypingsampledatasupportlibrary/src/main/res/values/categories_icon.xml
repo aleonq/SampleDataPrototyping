@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="categories_icon_array">
+        <item>@drawable/ic_athletics</item>
+        <item>@drawable/ic_book_black</item>
+        <item>@drawable/ic_outdoor_black</item>
+        <item>@drawable/ic_dine_black</item>
+        <item>@drawable/ic_photography_black</item>
+        <item>@drawable/ic_fitness_black</item>
+    </integer-array>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack_alpha"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:padding="8dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/iv_loading_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:tint="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/v_separator"
+            app:layout_constraintDimensionRatio="1.5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_rowing_black" />
+
+        <View
+            android:id="@+id/v_separator"
+            android:layout_width="match_parent"
+
+            android:layout_height="2dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/tv_loadingMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_loadingMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Please wait while we confirm the the thing you just asked for..." />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

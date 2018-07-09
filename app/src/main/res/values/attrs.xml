@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SampleEnabledRecyclerView_old02">
+        <attr name="listitem" format="reference" />
+        <attr name="listdata_text1" format="reference" />
+        <attr name="listitem_text1" format="reference" />
+        <attr name="listdata_text2" format="reference" />
+        <attr name="listitem_text2" format="reference" />
+        <attr name="listitem_image1" format="reference" />
+        <attr name="listdata_image1" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SampleEnabledRecyclerView_old">
+        <attr name="item_name_old" format="string" />
+        <attr name="listitem_old" format="reference" />
+        <attr name="listdata_text1_old" format="reference" />
+        <attr name="listitem_text_description_old" format="reference" />
+        <attr name="listitem_image_icon_old" format="reference" />
+        <attr name="listitem_image_icon_array_old" format="reference" />
+    </declare-styleable>
+</resources>

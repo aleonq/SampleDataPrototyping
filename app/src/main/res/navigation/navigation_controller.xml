@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_controller"
+    app:startDestination="@id/meetupListFragment">
+
+    <activity
+        android:id="@+id/landingActivity"
+        android:name="com.acme.news.archnavigation.LandingActivity"
+        android:label="activity_landing"
+        tools:layout="@layout/activity_landing" />
+    <fragment
+        android:id="@+id/meetupListFragment"
+        android:name="com.acme.news.archnavigation.MeetupListFragment"
+        android:label="fragment_meetup_list"
+        tools:layout="@layout/fragment_meetup_list" >
+    </fragment>
+    <fragment
+        android:id="@+id/myMeetupsFragment"
+        android:name="com.acme.news.archnavigation.MyMeetupsFragment"
+        android:label="fragment_meetup_list"
+        tools:layout="@layout/fragment_meetup_list" ></fragment>
+    <fragment
+        android:id="@+id/meetupSearchFragment"
+        android:name="com.acme.news.archnavigation.MeetupSearchFragment"
+        android:label="fragment_meetup_search"
+        tools:layout="@layout/fragment_meetup_search" ></fragment>
+</navigation>
