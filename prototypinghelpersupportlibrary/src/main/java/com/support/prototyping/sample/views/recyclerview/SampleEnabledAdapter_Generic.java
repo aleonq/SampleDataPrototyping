@@ -1,8 +1,14 @@
 package com.support.prototyping.sample.views.recyclerview;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,8 +83,9 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
         return minSize;
     }
 
-    static class ImageLoader extends AsyncTask<Integer, Void, Drawable> {
+    static class ImageLoader extends AsyncTask<Integer, Void, Bitmap> {
 
+        BitmapFactory.Options options;
         private WeakReference<ImageView> view;
         private WeakReference<SampleViewHolder_Generic> viewHolder_generic;
         private int position;
@@ -87,19 +94,55 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
             this.view = new WeakReference<>((ImageView) view);
             this.viewHolder_generic = new WeakReference<>(viewHolder_generic);
             this.position = position;
+            options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+        }
+
+
+        @Override
+        protected Bitmap doInBackground(Integer... ids) {
+            return getDrawable(ids[0]);
+        }
+
+        private Bitmap getDrawable(Integer id) {
+            Bitmap bitmap = null;
+            try {
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeResource(view.get().getContext().getResources(), id, options);
+                options.inSampleSize = 4;
+                options.inJustDecodeBounds = false;
+                bitmap = BitmapFactory.decodeResource(view.get().getContext().getResources(), id, options);
+                if (bitmap == null) {
+                    // May be a vector asset
+                    bitmap = getBitmapFromVectorDrawable(view.get().getContext(), id);
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        private Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
+            Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+            drawable = (DrawableCompat.wrap(drawable)).mutate();
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+            return bitmap;
         }
 
         @Override
-        protected Drawable doInBackground(Integer... ids) {
-            return view.get().getContext().getResources().getDrawable(ids[0]);
-        }
+        protected void onPostExecute(Bitmap bitmap) {
+            try {
+                if (position != viewHolder_generic.get().getAdapterPosition()) {
 
-        @Override
-        protected void onPostExecute(Drawable drawable) {
-            if (position != viewHolder_generic.get().getAdapterPosition()) {
-
-            } else {
-                view.get().setImageDrawable(drawable);
+                } else {
+                    view.get().setImageBitmap(bitmap);
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
         }
 
@@ -118,7 +161,7 @@ class SampleViewHolder_Generic extends RecyclerView.ViewHolder {
 
     View[] views;
 
-    public SampleViewHolder_Generic(@NonNull View itemView, int... viewIds) {
+    SampleViewHolder_Generic(@NonNull View itemView, int... viewIds) {
         super(itemView);
         views = new View[viewIds.length];
         for (int i = 0; i < viewIds.length; i++) {
