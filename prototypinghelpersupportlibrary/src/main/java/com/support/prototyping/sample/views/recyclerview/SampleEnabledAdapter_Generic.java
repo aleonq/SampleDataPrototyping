@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -105,25 +107,33 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
         }
 
         private Bitmap getDrawable(Integer id) {
-            Bitmap bitmap = null;
+            Context context = view.get().getContext();
             try {
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeResource(view.get().getContext().getResources(), id, options);
-                options.inSampleSize = 4;
-                options.inJustDecodeBounds = false;
-                bitmap = BitmapFactory.decodeResource(view.get().getContext().getResources(), id, options);
-                if (bitmap == null) {
-                    // May be a vector asset
-                    bitmap = getBitmapFromVectorDrawable(view.get().getContext(), id);
+                Drawable drawable = view.get().getContext().getResources().getDrawable(id);
+
+                if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && drawable instanceof VectorDrawable) ||
+                        drawable instanceof VectorDrawableCompat) {
+                    return getBitmapFromVectorDrawable(drawable);
+                } else {
+                    return getRasterDrawable(context, drawable, id);
                 }
+
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-            return bitmap;
+            return null;
         }
 
-        private Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
-            Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+        private Bitmap getRasterDrawable(Context context, Drawable drawable, Integer id) {
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeResource(context.getResources(), id, options);
+            options.inSampleSize = 4;
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeResource(view.get().getContext().getResources(), id, options);
+        }
+
+        private Bitmap getBitmapFromVectorDrawable(Drawable drawable) {
+            assert drawable != null;
             drawable = (DrawableCompat.wrap(drawable)).mutate();
             Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
                     drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -136,9 +146,7 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             try {
-                if (position != viewHolder_generic.get().getAdapterPosition()) {
-
-                } else {
+                if (position == viewHolder_generic.get().getAdapterPosition()) {
                     view.get().setImageBitmap(bitmap);
                 }
             } catch (NullPointerException e) {
