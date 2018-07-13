@@ -39,6 +39,28 @@ public class LandingActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host);
         NavigationUI.setupActionBarWithNavController(this, navController, drawer);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        navigate();
+    }
+
+    private void navigate() {
+        String path;
+        try {
+            path = getIntent().getData().getPath();
+            switch (path) {
+                case "/meetupsearch":
+                    Navigation.findNavController(this, R.id.nav_host).navigate(R.id.meetupSearchFragment);
+                    break;
+                case "/meetupslist":
+                    Navigation.findNavController(this, R.id.nav_host).navigate(R.id.meetupListFragment);
+                    break;
+                case "/mymeetups":
+                    Navigation.findNavController(this, R.id.nav_host).navigate(R.id.myMeetupsFragment);
+                    break;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
