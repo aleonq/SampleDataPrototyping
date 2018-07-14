@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Deprecated
 public class SampleEnabledRecyclerView_old02 extends RecyclerView {
 
     public SampleEnabledRecyclerView_old02(@NonNull Context context, @Nullable AttributeSet attrs) {

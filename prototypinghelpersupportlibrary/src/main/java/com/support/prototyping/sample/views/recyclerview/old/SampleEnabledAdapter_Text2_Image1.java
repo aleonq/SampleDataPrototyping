@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+@Deprecated
 public class SampleEnabledAdapter_Text2_Image1 extends RecyclerView.Adapter<SampleViewHolder_Text2_Image1> {
 
     private List<CharSequence> listTextview1Data;
@@ -54,6 +55,7 @@ public class SampleEnabledAdapter_Text2_Image1 extends RecyclerView.Adapter<Samp
     }
 }
 
+@Deprecated
 class SampleViewHolder_Text2_Image1 extends RecyclerView.ViewHolder {
 
     TextView textView1;
