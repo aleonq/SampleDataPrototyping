@@ -100,15 +100,14 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
             options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         }
 
-
         @Override
         protected Bitmap doInBackground(Integer... ids) {
             return getDrawable(ids[0]);
         }
 
         private Bitmap getDrawable(Integer id) {
-            Context context = view.get().getContext();
             try {
+                Context context = view.get().getContext();
                 Drawable drawable = view.get().getContext().getResources().getDrawable(id);
 
                 if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && drawable instanceof VectorDrawable) ||
@@ -117,7 +116,6 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
                 } else {
                     return getRasterDrawable(context, drawable, id);
                 }
-
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -155,14 +153,6 @@ public class SampleEnabledAdapter_Generic extends RecyclerView.Adapter<SampleVie
         }
 
     }
-}
-
-class ImageLoaderManager {
-
-    public ImageLoaderManager() {
-
-    }
-
 }
 
 class SampleViewHolder_Generic extends RecyclerView.ViewHolder {
